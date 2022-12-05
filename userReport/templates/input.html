@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script> -->
+  </head>
+  <body class="">
+    <div class="container">
+      <form action="getreport" name="form_get_report" method="POST">
+        <div class="form-group">
+          <label for="exampleInputEmail1">secret key:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="secret_key"
+            value="ade0vmif32ar0wi7mj2yky0179aipmcca1713iv^8452ae"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="agent_user">agent user:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="agent_user"
+            value=""
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="agent_password">password agent:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="agent_password"
+            value=""
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="customer_user">customer user:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="customer_user"
+            value=""
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
