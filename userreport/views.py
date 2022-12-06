@@ -8,7 +8,7 @@ try:
 except ImportError:
     configs = {}
 try:
-    from userReport.userReport import userReport
+    from userreport.userReport import userReport
     userReportObj = userReport()
 except :
     print ("Object Error")

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'userReport'
+    'userreport'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'ambsuperapi-report.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'ambsuperapi-report','templates'),os.path.join(BASE_DIR,'userReport','templates')],
+        'DIRS': [os.path.join(BASE_DIR,'ambsuperapi-report','templates'),os.path.join(BASE_DIR,'userreport','templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
