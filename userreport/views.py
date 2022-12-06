@@ -22,16 +22,14 @@ def index(request):
 @csrf_exempt
 def getreport(request):
     secretKey = request.POST['secret_key']
+    loginUser = request.POST['login_user']
+    loginPassword = request.POST['login_password']
     agentUser = request.POST['agent_user']
-    agentPassword = request.POST['agent_password']
-    customerUser = request.POST['customer_user']
+    memberUser = request.POST['member_user']
 
+    # check key
     if userReportObj.checkSecretKey(secretKey) == False:
         return HttpResponse(json.dumps({'success':False,'message':'secret key error','data':{}}))
 
-    # login
-    userReportObj.getpage()
-
-    # crawler page report/winLose by agent name
-
-    # crawler page report/winLose?id={USERID}&currency=THB
+    # worker
+    dataRes = userReportObj.worker(loginUser,loginPassword,agentUser,memberUser)
