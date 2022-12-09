@@ -16,6 +16,8 @@ import json
 import os
 import re
 import requests
+from collections import defaultdict
+
 
 class userReport():
 
@@ -59,7 +61,8 @@ class userReport():
             'sec-fetch-site': 'same-site',
             'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
         }
-        self.pageSize = 500
+
+        self.memberUserID = None
 
     def checkSecretKey(self,secretKey):
         if self.secretKey != secretKey:
@@ -67,6 +70,9 @@ class userReport():
         return True
 
     def getReport(self,agentUser,memberUser,dateStart,dateEnd):
+        
+        dataRes = defaultdict(dict)
+        dataRes = {'success':True,'message':'fetch data success','data':{}}
 
         # check if not found token files or request API with current token (403 prem denied)
         if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile',agentUser)) or self.getCustomerListsByAPI(agentUser,dateStart,dateEnd) == False:
@@ -74,19 +80,50 @@ class userReport():
 
         # test by get customer list again after renew token
         if self.getCustomerListsByAPI(agentUser,dateStart,dateEnd) == False:
-            
+            dataRes = {'success':False,'message':'can not get data with new token','data':{}}
+            return dataRes
+
         # check if user are not under the agent 
+        if self.checkUserUnderAgent(agentUser,dateStart,dateEnd,memberUser) == False:
+            dataRes = {'success':False,'message':'user %s not found or not under the agent %s'%(memberUser,agentUser),'data':{}}
+            return dataRes
+        # TODO
+        return dataRes
 
+    def checkUserUnderAgent(self,agentUser,dateStart,dateEnd,memberUser):
 
+        tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',agentUser)))
+
+        self.apiRegHeaders['auth-name'] = tokenFile['auth_name']
+        self.apiRegHeaders['auth-token'] = tokenFile['auth_token']
+
+        urlParam = '?id=%s'%tokenFile['id_name']
+        urlParam = urlParam + '&currency=THB'
+        urlParam = urlParam + '&username=%s'%memberUser
+        urlParam = urlParam + '&startDate=%s'%dateStart+'T17:00:00.000Z'
+        urlParam = urlParam + '&endDate=%s'%dateEnd+'T16:59:59.999Z'
+        urlParam = urlParam + '&product='
+        urlParam = urlParam + '&category='
+        urlParam = urlParam + '&reportBy=account'
+        urlParam = urlParam + '&page=1'
+        urlParam = urlParam + '&pageSize=100'
+        urlParam = urlParam + '&timezone=7'
+
+        response = requests.get(self.winloseAPI+urlParam,headers=self.apiRegHeaders)
+        if response.status_code != 200: # 403 prem denied
+            return False
+        response = response.json()
+        self.memberUserID = response['data']['username']
+        return True
 
     def getCustomerListsByAPI(self,agentUser,dateStart,dateEnd):
         
-        token = json.load(open(os.path.join(os.getcwd(), r'tokenfile',agentUser)))
+        tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',agentUser)))
 
-        self.apiRegHeaders['auth-name'] = token['auth_name']
-        self.apiRegHeaders['auth-token'] = token['auth_token']
+        self.apiRegHeaders['auth-name'] = tokenFile['auth_name']
+        self.apiRegHeaders['auth-token'] = tokenFile['auth_token']
 
-        urlParam =            '/?id=%s'%token['id_name']
+        urlParam =            '/?id=%s'%tokenFile['id_name']
         urlParam = urlParam + '&currency=THB'
         urlParam = urlParam + '&username='
         urlParam = urlParam + '&startDate=%s'%dateStart+'T17:00:00.000Z'
@@ -99,8 +136,7 @@ class userReport():
         urlParam = urlParam + '&timezone=7'
         
         response = requests.get(self.winloseAPI+urlParam,headers=self.apiRegHeaders)
-        response = response.json()
-        if response['status_code'] != 200: # 403 prem denied
+        if response.status_code != 200: # 403 prem denied
             return False
         return True
     

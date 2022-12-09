@@ -34,4 +34,4 @@ def getreport(request):
     # worker
     dataRes = userReportObj.getReport(agentUser,memberUser,dateStart,dateEnd)
 
-    return HttpResponse(json.dumps({'success':True,'message':'','data':dataRes}))
+    return HttpResponse(json.dumps(dataRes))
