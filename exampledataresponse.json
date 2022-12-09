@@ -1,0 +1,726 @@
+{
+    "success": true,
+    "data": {
+        "id": "bell2seamless",
+        "type": "Operator",
+        "currency": [
+            "THB"
+        ],
+        "list": [
+            {
+                "currency": "THB",
+                "grandTotal": {
+                    "betCount": 49486,
+                    "stake": "94719.5",
+                    "validStake": "94719.5",
+                    "winlose": "-4448.48",
+                    "progressiveShare": "0",
+                    "jackpotWin": "0",
+                    "tips": "0",
+                    "providerEvent": "0",
+                    "child": {
+                        "validStake": "94719.5",
+                        "winlose": "-4448.48",
+                        "total": "-4448.48",
+                        "commission": "0"
+                    },
+                    "self": {
+                        "validStake": "-84300.355",
+                        "winlose": "3959.1472",
+                        "total": "3959.1472",
+                        "commission": "0"
+                    },
+                    "parent": {
+                        "validStake": "10419.145",
+                        "winlose": "489.3328",
+                        "total": "489.3328",
+                        "commission": "0"
+                    }
+                },
+                "grandCount": 73,
+                "rows": [
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfaseee029",
+                        "currency": "THB",
+                        "id": "00holbfaseee029",
+                        "name": "lbfaseee029",
+                        "type": "Member",
+                        "betCount": 6373,
+                        "stake": "36547",
+                        "validStake": "36547",
+                        "winlose": "-2241.25",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "29642",
+                            "winlose": "-2256",
+                            "total": "-2256",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "26381.38",
+                            "winlose": "2007.84",
+                            "total": "2007.84",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "3260.62",
+                            "winlose": "248.16",
+                            "total": "248.16",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfasf64631",
+                        "currency": "THB",
+                        "id": "00holbfasf64631",
+                        "name": "lbfasf64631",
+                        "type": "Member",
+                        "betCount": 6217,
+                        "stake": "15283",
+                        "validStake": "15283",
+                        "winlose": "-236.58",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "15226",
+                            "winlose": "-186.74",
+                            "total": "-186.74",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "13551.14",
+                            "winlose": "166.1986",
+                            "total": "166.1986",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "1674.86",
+                            "winlose": "20.5414",
+                            "total": "20.5414",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfascf298a",
+                        "currency": "THB",
+                        "id": "00holbfascf298a",
+                        "name": "lbfascf298a",
+                        "type": "Member",
+                        "betCount": 3696,
+                        "stake": "8990.5",
+                        "validStake": "8990.5",
+                        "winlose": "244.75",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "8563.5",
+                            "winlose": "283",
+                            "total": "283",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "7621.515",
+                            "winlose": "-251.87",
+                            "total": "-251.87",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "941.985",
+                            "winlose": "-31.13",
+                            "total": "-31.13",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfsaauz3l2x",
+                        "currency": "THB",
+                        "id": "00holbfsaauz3l2x",
+                        "name": "lbfsaauz3l2x",
+                        "type": "Member",
+                        "betCount": 1312,
+                        "stake": "8369.4",
+                        "validStake": "8369.4",
+                        "winlose": "-152.35",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "8369.4",
+                            "winlose": "-152.35",
+                            "total": "-152.35",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "7448.766",
+                            "winlose": "135.5915",
+                            "total": "135.5915",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "920.634",
+                            "winlose": "16.7585",
+                            "total": "16.7585",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas07fa3f",
+                        "currency": "THB",
+                        "id": "00holbfas07fa3f",
+                        "name": "lbfas07fa3f",
+                        "type": "Member",
+                        "betCount": 7406,
+                        "stake": "8168",
+                        "validStake": "8168",
+                        "winlose": "109.45",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "8180",
+                            "winlose": "97.45",
+                            "total": "97.45",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "7280.2",
+                            "winlose": "-86.7305",
+                            "total": "-86.7305",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "899.8",
+                            "winlose": "-10.7195",
+                            "total": "-10.7195",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfsaasgdx7k",
+                        "currency": "THB",
+                        "id": "00holbfsaasgdx7k",
+                        "name": "lbfsaasgdx7k",
+                        "type": "Member",
+                        "betCount": 971,
+                        "stake": "6735",
+                        "validStake": "6735",
+                        "winlose": "-1000.8",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "6735",
+                            "winlose": "-1000.8",
+                            "total": "-1000.8",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "5994.15",
+                            "winlose": "890.712",
+                            "total": "890.712",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "740.85",
+                            "winlose": "110.088",
+                            "total": "110.088",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfsaasg88le",
+                        "currency": "THB",
+                        "id": "00holbfsaasg88le",
+                        "name": "lbfsaasg88le",
+                        "type": "Member",
+                        "betCount": 2083,
+                        "stake": "3289.2",
+                        "validStake": "3289.2",
+                        "winlose": "-26",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "3289.2",
+                            "winlose": "-26",
+                            "total": "-26",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "2927.388",
+                            "winlose": "23.14",
+                            "total": "23.14",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "361.812",
+                            "winlose": "2.86",
+                            "total": "2.86",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas107511",
+                        "currency": "THB",
+                        "id": "00holbfas107511",
+                        "name": "lbfas107511",
+                        "type": "Member",
+                        "betCount": 2403,
+                        "stake": "2587",
+                        "validStake": "2587",
+                        "winlose": "-132.9",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "2589",
+                            "winlose": "-134.9",
+                            "total": "-134.9",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "2304.21",
+                            "winlose": "120.061",
+                            "total": "120.061",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "284.79",
+                            "winlose": "14.839",
+                            "total": "14.839",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas3a8d01",
+                        "currency": "THB",
+                        "id": "00holbfas3a8d01",
+                        "name": "lbfas3a8d01",
+                        "type": "Member",
+                        "betCount": 2806,
+                        "stake": "1968",
+                        "validStake": "1968",
+                        "winlose": "345.55",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1969",
+                            "winlose": "344.85",
+                            "total": "344.85",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1752.41",
+                            "winlose": "-306.9165",
+                            "total": "-306.9165",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "216.59",
+                            "winlose": "-37.9335",
+                            "total": "-37.9335",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfase8241d",
+                        "currency": "THB",
+                        "id": "00holbfase8241d",
+                        "name": "lbfase8241d",
+                        "type": "Member",
+                        "betCount": 1794,
+                        "stake": "1728",
+                        "validStake": "1728",
+                        "winlose": "-101.5",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1728",
+                            "winlose": "-101.5",
+                            "total": "-101.5",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1537.92",
+                            "winlose": "90.335",
+                            "total": "90.335",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "190.08",
+                            "winlose": "11.165",
+                            "total": "11.165",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas17a5ad",
+                        "currency": "THB",
+                        "id": "00holbfas17a5ad",
+                        "name": "lbfas17a5ad",
+                        "type": "Member",
+                        "betCount": 694,
+                        "stake": "1701",
+                        "validStake": "1701",
+                        "winlose": "-832.15",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1701",
+                            "winlose": "-832.15",
+                            "total": "-832.15",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1513.89",
+                            "winlose": "740.6135",
+                            "total": "740.6135",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "187.11",
+                            "winlose": "91.5365",
+                            "total": "91.5365",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas66c896",
+                        "currency": "THB",
+                        "id": "00holbfas66c896",
+                        "name": "lbfas66c896",
+                        "type": "Member",
+                        "betCount": 1459,
+                        "stake": "1542.4",
+                        "validStake": "1542.4",
+                        "winlose": "-169.85",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1542.4",
+                            "winlose": "-169.85",
+                            "total": "-169.85",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1372.736",
+                            "winlose": "151.1665",
+                            "total": "151.1665",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "169.664",
+                            "winlose": "18.6835",
+                            "total": "18.6835",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas7d6f19",
+                        "currency": "THB",
+                        "id": "00holbfas7d6f19",
+                        "name": "lbfas7d6f19",
+                        "type": "Member",
+                        "betCount": 2331,
+                        "stake": "1525",
+                        "validStake": "1525",
+                        "winlose": "24.35",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1525",
+                            "winlose": "24.35",
+                            "total": "24.35",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1357.25",
+                            "winlose": "-21.6715",
+                            "total": "-21.6715",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "167.75",
+                            "winlose": "-2.6785",
+                            "total": "-2.6785",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfasa66313",
+                        "currency": "THB",
+                        "id": "00holbfasa66313",
+                        "name": "lbfasa66313",
+                        "type": "Member",
+                        "betCount": 534,
+                        "stake": "1470",
+                        "validStake": "1470",
+                        "winlose": "700.15",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1470",
+                            "winlose": "700.15",
+                            "total": "700.15",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1308.3",
+                            "winlose": "-623.1335",
+                            "total": "-623.1335",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "161.7",
+                            "winlose": "-77.0165",
+                            "total": "-77.0165",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfasfa5bb4",
+                        "currency": "THB",
+                        "id": "00holbfasfa5bb4",
+                        "name": "lbfasfa5bb4",
+                        "type": "Member",
+                        "betCount": 1123,
+                        "stake": "1429",
+                        "validStake": "1429",
+                        "winlose": "-199.3",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1429",
+                            "winlose": "-193.1",
+                            "total": "-193.1",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1271.81",
+                            "winlose": "171.859",
+                            "total": "171.859",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "157.19",
+                            "winlose": "21.241",
+                            "total": "21.241",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfasdab12c",
+                        "currency": "THB",
+                        "id": "00holbfasdab12c",
+                        "name": "lbfasdab12c",
+                        "type": "Member",
+                        "betCount": 2098,
+                        "stake": "1333",
+                        "validStake": "1333",
+                        "winlose": "41.6",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1334",
+                            "winlose": "40.65",
+                            "total": "40.65",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1187.26",
+                            "winlose": "-36.1785",
+                            "total": "-36.1785",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "146.74",
+                            "winlose": "-4.4715",
+                            "total": "-4.4715",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas89910c",
+                        "currency": "THB",
+                        "id": "00holbfas89910c",
+                        "name": "lbfas89910c",
+                        "type": "Member",
+                        "betCount": 1338,
+                        "stake": "1250.5",
+                        "validStake": "1250.5",
+                        "winlose": "299.95",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1251.5",
+                            "winlose": "298.95",
+                            "total": "298.95",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1113.835",
+                            "winlose": "-266.0655",
+                            "total": "-266.0655",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "137.665",
+                            "winlose": "-32.8845",
+                            "total": "-32.8845",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas4c65db",
+                        "currency": "THB",
+                        "id": "00holbfas4c65db",
+                        "name": "lbfas4c65db",
+                        "type": "Member",
+                        "betCount": 1167,
+                        "stake": "1131",
+                        "validStake": "1131",
+                        "winlose": "-197.65",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1131",
+                            "winlose": "-197.65",
+                            "total": "-197.65",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "1006.59",
+                            "winlose": "175.9085",
+                            "total": "175.9085",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "124.41",
+                            "winlose": "21.7415",
+                            "total": "21.7415",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfas6c7b8b",
+                        "currency": "THB",
+                        "id": "00holbfas6c7b8b",
+                        "name": "lbfas6c7b8b",
+                        "type": "Member",
+                        "betCount": 279,
+                        "stake": "1105",
+                        "validStake": "1105",
+                        "winlose": "249.45",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1105",
+                            "winlose": "249.45",
+                            "total": "249.45",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "983.45",
+                            "winlose": "-222.0105",
+                            "total": "-222.0105",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "121.55",
+                            "winlose": "-27.4395",
+                            "total": "-27.4395",
+                            "commission": "0"
+                        }
+                    },
+                    {
+                        "myId": "bell2seamless",
+                        "realName": "lbfsaa0xjniq",
+                        "currency": "THB",
+                        "id": "00holbfsaa0xjniq",
+                        "name": "lbfsaa0xjniq",
+                        "type": "Member",
+                        "betCount": 1609,
+                        "stake": "1092",
+                        "validStake": "1092",
+                        "winlose": "-149.6",
+                        "progressiveShare": "0",
+                        "jackpotWin": "0",
+                        "tips": "0",
+                        "providerEvent": "0",
+                        "child": {
+                            "validStake": "1094",
+                            "winlose": "-151.6",
+                            "total": "-151.6",
+                            "commission": "-0"
+                        },
+                        "self": {
+                            "validStake": "973.66",
+                            "winlose": "134.924",
+                            "total": "134.924",
+                            "commission": "0"
+                        },
+                        "parent": {
+                            "validStake": "120.34",
+                            "winlose": "16.676",
+                            "total": "16.676",
+                            "commission": "0"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
