@@ -14,6 +14,8 @@ winlose_page = 'https://ambsuperapi.com/report/winLose'
 
 winlose_api = 'https://api.ambsuperapi.com/report/winLose'
 
+bet_details = 'https://api.ambsuperapi.com/report/betDetail'
+
 agent_login = {
     'bell2seamless@bot': {
         'user_name':'bell2seamless@bot',

@@ -17,6 +17,7 @@ import os
 import re
 import requests
 from collections import defaultdict
+import math
 
 
 class userReport():
@@ -36,6 +37,7 @@ class userReport():
         self.winlosePage = getattr(configs, 'winlose_page', '')
         self.agentLogin = getattr(configs, 'agent_login', [])
         self.winloseAPI = getattr(configs, 'winlose_api', '')
+        self.betDetails = getattr(configs, 'bet_details', '')
 
         #chromedriver args
         self.headless = False
@@ -63,6 +65,7 @@ class userReport():
         }
 
         self.memberUserID = None
+        self.transactionsRowsPerPage = 500
 
     def checkSecretKey(self,secretKey):
         if self.secretKey != secretKey:
@@ -75,70 +78,124 @@ class userReport():
         dataRes = {'success':True,'message':'fetch data success','data':{}}
 
         # check if not found token files or request API with current token (403 prem denied)
-        if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile',agentUser)) or self.getCustomerListsByAPI(agentUser,dateStart,dateEnd) == False:
+        if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile',agentUser)) or self.getCustomerListsByAPI(agentUser,dateStart,dateEnd)['success'] == False:
             self.renewTokenWithChromeDriver(agentUser)
 
         # test by get customer list again after renew token
-        if self.getCustomerListsByAPI(agentUser,dateStart,dateEnd) == False:
-            dataRes = {'success':False,'message':'can not get data with new token','data':{}}
+        getCus = self.getCustomerListsByAPI(agentUser,dateStart,dateEnd)
+        if getCus['success'] == False:
+            dataRes = {'success':getCus['success'],'message':getCus['message'],'data':{}}
             return dataRes
 
         # check if user are not under the agent 
-        if self.checkUserUnderAgent(agentUser,dateStart,dateEnd,memberUser) == False:
-            dataRes = {'success':False,'message':'user %s not found or not under the agent %s'%(memberUser,agentUser),'data':{}}
+        checkUser = self.checkUserUnderAgentByAPI(agentUser,dateStart,dateEnd,memberUser)
+        if checkUser['success'] == False:
+            dataRes = {'success':checkUser['success'],'message':checkUser['message'],'data':{}}
             return dataRes
-        # TODO
+        
+        # get all user transaction
+        userTransactions = self.getAllUserTransactionsByAPI(agentUser,dateStart,dateEnd)
+        if userTransactions['success'] == False:
+            dataRes = {'success':userTransactions['success'],'message':userTransactions['message'],'data':{}}
+            return dataRes
+        
+        dataRes['data'] = userTransactions
         return dataRes
+    
+    def getAllUserTransactionsByAPI(self,agentUser,dateStart,dateEnd):
+        
+        userTransactions = defaultdict(dict)
 
-    def checkUserUnderAgent(self,agentUser,dateStart,dateEnd,memberUser):
+        response = self.apiRequest(agentUser, self.betDetails, self.memberUserID, dateStart, dateEnd, '1', str(self.transactionsRowsPerPage),'getAllUserTransactionsByAPI')
+        if 'success' in response and  'data' in response and  len(response['data']) == 0: #empty data
+            return {'success':False,'message':'not found data transaction for user %s'%self.memberUserID}
+        elif 'error' in response:
+            return {'success':False,'message':response['error']['message']}
+        elif 'success' in response and response['success'] == False:
+            return {'success':False,'message': response['message']}
+        
+        userTransactions['cus_id'] = response['data']['id']
+        userTransactions['cus_type'] = response['data']['type']
+        userTransactions['cus_currency'] = response['data']['currency']
+        userTransactions['total']['grand_total'] = response['data']['grandTotal']['realBets']
+        userTransactions['total']['cus_winlose'] = response['data']['grandTotal']['total']['member']
+        userTransactions['total']['agent_winlose'] = response['data']['grandTotal']['total']['toOperator']
+        userTransactions['total']['company_winlose'] = response['data']['grandTotal']['total']['toReseller']
+        userTransactions['list_transactions'] = response['data']['list']
 
+        pageRegCount = math.ceil(response['data']['grandCount'] / self.transactionsRowsPerPage)
+        if pageRegCount <= 1:
+            return userTransactions
+        
+        #TODO เริ่มที่ หน้า 2
+
+        return userTransactions
+
+    def checkUserUnderAgentByAPI(self,agentUser,dateStart,dateEnd,memberUser):
+
+        response = self.apiRequest(agentUser, self.winloseAPI, memberUser, dateStart, dateEnd, '1', '100','checkUserUnderAgentByAPI')
+        if 'success' in response and response['success']  == True:
+            self.memberUserID = response['data']['username']
+            return {'success':True ,'message':'%s is under %s'%(memberUser, agentUser)}
+        elif 'error' in response:
+            return {'success':False,'message':'%s (user %s not found or not under the agent %s)'%(response['error']['message'],memberUser,agentUser)}
+        else:
+            return {'success':False,'message': response['message']}
+    
+    def apiRequest(self, agentUser, urlReg, memberUser, dateStart, dateEnd, page, pageSize, functionCall):
+        
         tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',agentUser)))
 
         self.apiRegHeaders['auth-name'] = tokenFile['auth_name']
         self.apiRegHeaders['auth-token'] = tokenFile['auth_token']
 
-        urlParam = '?id=%s'%tokenFile['id_name']
+        urlParam = '?id=%s'%tokenFile['id_name'] if functionCall != 'getAllUserTransactionsByAPI' else '?id=%s'%memberUser
         urlParam = urlParam + '&currency=THB'
-        urlParam = urlParam + '&username=%s'%memberUser
+        if functionCall != 'getAllUserTransactionsByAPI':
+            urlParam = urlParam + '&username=%s'%memberUser if memberUser != None else urlParam + '&username='
         urlParam = urlParam + '&startDate=%s'%dateStart+'T17:00:00.000Z'
         urlParam = urlParam + '&endDate=%s'%dateEnd+'T16:59:59.999Z'
         urlParam = urlParam + '&product='
         urlParam = urlParam + '&category='
-        urlParam = urlParam + '&reportBy=account'
-        urlParam = urlParam + '&page=1'
-        urlParam = urlParam + '&pageSize=100'
+        if functionCall != 'getAllUserTransactionsByAPI':
+            urlParam = urlParam + '&reportBy=account'
+        urlParam = urlParam + '&page=%s'%page
+        urlParam = urlParam + '&pageSize=%s'%pageSize
         urlParam = urlParam + '&timezone=7'
 
-        response = requests.get(self.winloseAPI+urlParam,headers=self.apiRegHeaders)
-        if response.status_code != 200: # 403 prem denied
-            return False
-        response = response.json()
-        self.memberUserID = response['data']['username']
-        return True
+        try:
+            response = requests.get(urlReg+urlParam,headers=self.apiRegHeaders)
+        except requests.exceptions.RequestException as e:
+            print('error',e)
+            print('request error url:',urlReg+urlParam)
+            return {'success':False ,'message':'request error url: %s%s'%(urlReg,urlParam) }
+
+        try:
+            responseJSON = response.json()
+        except ValueError as e:  # includes simplejson.decoder.JSONDecodeError
+            print('decoding JSON from',urlReg+urlParam,'has failed')
+            return {'success':False,'message':'cannot decode json from %s%s'%(urlReg,urlParam)}
+
+        if 'statusCode' in responseJSON: # Forbidden 
+            print('api request error code: %s message: %s'%(responseJSON['statusCode'],responseJSON['message']))
+            return responseJSON
+
+        if response.status_code != 200: 
+            return {'success':False, 'message':'response status code error %s errorcode:%s'%(urlReg,response.status_code)}
+        
+        return responseJSON
+
 
     def getCustomerListsByAPI(self,agentUser,dateStart,dateEnd):
-        
-        tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',agentUser)))
 
-        self.apiRegHeaders['auth-name'] = tokenFile['auth_name']
-        self.apiRegHeaders['auth-token'] = tokenFile['auth_token']
-
-        urlParam =            '/?id=%s'%tokenFile['id_name']
-        urlParam = urlParam + '&currency=THB'
-        urlParam = urlParam + '&username='
-        urlParam = urlParam + '&startDate=%s'%dateStart+'T17:00:00.000Z'
-        urlParam = urlParam + '&endDate=%s'%dateEnd+'T16:59:59.999Z'
-        urlParam = urlParam + '&product='
-        urlParam = urlParam + '&category='
-        urlParam = urlParam + '&reportBy=account'
-        urlParam = urlParam + '&page=1'
-        urlParam = urlParam + '&pageSize=100'
-        urlParam = urlParam + '&timezone=7'
+        response = self.apiRequest(agentUser, self.winloseAPI, None, dateStart, dateEnd, '1', '100','getCustomerListsByAPI')
         
-        response = requests.get(self.winloseAPI+urlParam,headers=self.apiRegHeaders)
-        if response.status_code != 200: # 403 prem denied
-            return False
-        return True
+        if 'success' in response and response['success']  == True:
+            return {'success':True, 'message':'get user successful'}
+        elif 'error' in response:
+            return {'success':False,'message':response['error']['message']}
+        else:
+            return {'success':False,'message': response['message']}
     
     def renewTokenWithChromeDriver(self,agentUser):
         options = webdriver.ChromeOptions()

@@ -23,7 +23,7 @@ curl 'https://api.ambsuperapi.com/report/winLose?id=bell2seamless&currency=THB&u
 -H 'accept: */*' \
 -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
 -H 'auth-name: bell2seamless@bot' \
--H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbGwyc2VhbWxlc3NAYm90Iiwicm9sZXMiOlsiU3ViQWNjb3VudCJdLCJzdWJBY2NvdW50TWVudXMiOlt7Im5hbWUiOiJNRU5VX0FHRU5UIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9LHsibmFtZSI6Ik1FTlVfQUNDT1VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX1JFUE9SVCIsInBlcm1pc3Npb24iOiJyZWFkb25seSJ9LHsibmFtZSI6Ik1FTlVfQ1JFRElUIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9XSwiaWF0IjoxNjcwNTY5NTUxfQ.yzj43Tr-TESbJiqH3QsLsqUsJUxeLEjIV8P-KKUk1CM' \
+-H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbGwyc2VhbWxlc3NAYm90Iiwicm9sZXMiOlsiU3ViQWNjb3VudCJdLCJzdWJBY2NvdW50TWVudXMiOlt7Im5hbWUiOiJNRU5VX0FHRU5UIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9LHsibmFtZSI6Ik1FTlVfQUNDT1VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX1JFUE9SVCIsInBlcm1pc3Npb24iOiJyZWFkb25seSJ9LHsibmFtZSI6Ik1FTlVfQ1JFRElUIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9XSwiaWF0IjoxNjcwNTc0ODMwfQ.UL9MqkMCwiJ34daUZn6KQVobyvVHIwe2y3nfJphraZs' \
 -H 'cache-control: no-cache' \
 -H 'origin: https://ambsuperapi.com' \
 -H 'pragma: no-cache' \
@@ -39,6 +39,25 @@ curl 'https://api.ambsuperapi.com/report/winLose?id=bell2seamless&currency=THB&u
 
 
 
+curl 'https://api.ambsuperapi.com/report/betDetail?id=00holbfas74c2b4&currency=THB&product=&category=&startDate=2022-12-09T17:00:00.000Z&endDate=2022-12-10T16:59:59.999Z&page=1&pageSize=500&timezone=7' \
+-H 'authority: api.ambsuperapi.com' \
+-H 'accept: */*' \
+-H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
+-H 'auth-name: bell2seamless@bot' \
+-H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbGwyc2VhbWxlc3NAYm90Iiwicm9sZXMiOlsiU3ViQWNjb3VudCJdLCJzdWJBY2NvdW50TWVudXMiOlt7Im5hbWUiOiJNRU5VX0FHRU5UIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9LHsibmFtZSI6Ik1FTlVfQUNDT1VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX1JFUE9SVCIsInBlcm1pc3Npb24iOiJyZWFkb25seSJ9LHsibmFtZSI6Ik1FTlVfQ1JFRElUIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9XSwiaWF0IjoxNjcwNjQ4MTI4fQ.xPWMUGJCUgG5FdRfrtWc4vDrCrmRlB329Uy4zHq44Fk' \
+-H 'cache-control: no-cache' \
+-H 'origin: https://ambsuperapi.com' \
+-H 'pragma: no-cache' \
+-H 'referer: https://ambsuperapi.com/' \
+-H 'sec-ch-ua: "Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"' \
+-H 'sec-ch-ua-mobile: ?0' \
+-H 'sec-ch-ua-platform: "macOS"' \
+-H 'sec-fetch-dest: empty' \
+-H 'sec-fetch-mode: cors' \
+-H 'sec-fetch-site: same-site' \
+-H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36' \
+--compressed
+
 
 check user if exist of user of this agent
 https://api.ambsuperapi.com/report/winLose?id=bell2seamless&currency=THB&username=lbfaseee029&startDate=2022-12-06T17:00:00.000Z&endDate=2022-12-07T16:59:59.999Z&product=&category=&reportBy=account&page=1&pageSize=500&timezone=7
@@ -48,3 +67,5 @@ https://api.ambsuperapi.com/report/winLose?id=bell2seamless&currency=THB&usernam
 
 token expired
 {"statusCode":403,"message":"Forbidden resource","error":"Forbidden"}
+
+
