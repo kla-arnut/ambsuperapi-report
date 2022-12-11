@@ -68,12 +68,14 @@ class userReport():
         self.transactionsRowsPerPage = 500
 
     def getAllToken(self):
-        allToken = {}
+        allToken = defaultdict(dict)
         files = os.listdir(os.path.join(os.getcwd(), r'tokenfile'))
         files = [f for f in files if os.path.isfile(os.path.join(os.getcwd(), r'tokenfile',f))]
+        idx = 0
         for file in files:
             tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',file)))
-            allToken.update({'filename':file, 'auth_token':tokenFile['auth_token'], 'auth_name':tokenFile['auth_name'], 'id_name':tokenFile['id_name']})
+            allToken[idx].update({'filename':file, 'auth_token':tokenFile['auth_token'], 'auth_name':tokenFile['auth_name'], 'id_name':tokenFile['id_name']})
+            idx =  idx+1
         return allToken
 
     def checkSecretKey(self,secretKey):
