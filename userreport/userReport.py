@@ -76,7 +76,6 @@ class userReport():
             tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',file)))
             allToken[idx].update({'filename':os.path.join(os.getcwd(), r'tokenfile',file), 'auth_token':tokenFile['auth_token'], 'auth_name':tokenFile['auth_name'], 'id_name':tokenFile['id_name']})
             idx =  idx+1
-        print(allToken)
         return allToken
 
     def checkSecretKey(self,secretKey):
