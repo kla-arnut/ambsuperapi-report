@@ -203,7 +203,6 @@ class userReport():
 
         return responseJSON
 
-
     def getCustomerListsByAPI(self,agentUser,dateStart,dateEnd):
 
         response = self.apiRequest(agentUser, self.winloseAPI, None, dateStart, dateEnd, '1', '100','getCustomerListsByAPI')
