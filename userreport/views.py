@@ -17,7 +17,7 @@ except :
 
 def index(request):
     allToken = userReportObj.getAllToken()
-    return render(request, "input.html", {'allToken':allToken})
+    return render(request, "input.html", {'allToken':allToken.items()})
     #return HttpResponse("Hello, world. You're at the user report index.")
 
 @csrf_exempt

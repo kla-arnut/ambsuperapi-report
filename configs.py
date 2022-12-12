@@ -3,7 +3,7 @@
 #     pass lbftfd321b98
 
 # agent
-#     bell2seamless@bot
+#     bell2seamless@bot2
 #     lbftfd321b98
 
 secret_key = 'ade0vmif32ar0wi7mj2yky0179aipmcca1713iv^8452ae'
@@ -17,8 +17,8 @@ winlose_api = 'https://api.ambsuperapi.com/report/winLose'
 bet_details = 'https://api.ambsuperapi.com/report/betDetail'
 
 agent_login = {
-    'bell2seamless@bot': {
-        'user_name':'bell2seamless@bot',
+    'bell2seamless@bot2': {
+        'user_name':'bell2seamless@bot2',
         'password':'lbftfd321b98'
     },
 }

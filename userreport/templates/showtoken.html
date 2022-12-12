@@ -1,1 +1,30 @@
-<li>{{allToken}}</li>
+<table class="table table-striped table-responsive" style="word-break:break-word;margin-top:30px;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Auth Token</th>
+            <th scope="col">Auth Name</th>
+            <th scope="col">ID Name</th>
+        </tr>
+    </thead>
+    {% if allToken|length > 0 %} 
+    {% for key, value in allToken %}
+    <tbody>
+        <tr>
+            <th scope="row">{{ key }} </th> 
+            <td>{{ value.filename }}</td>
+            <td>{{ value.auth_token }}</td>
+            <td>{{ value.auth_name }}</td>
+            <td>{{ value.id_name }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+    {% else %}
+    <tbody>
+        <tr>
+            <td  colspan="5" scope="row">There is no data found for the Token file. </td> 
+        </tr>
+    </tbody>
+    {% endif %}
+</table>
