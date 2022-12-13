@@ -30,8 +30,9 @@ def getreport(request):
     dateEnd = request.POST['date_end']
 
     # check key
-    if userReportObj.checkSecretKey(secretKey) == False:
-        return JsonResponse({'success':False,'message':'secret key error','data':{}})
+    checkSecret = userReportObj.checkSecretKey(secretKey)
+    if checkSecret['success'] == False:
+        return JsonResponse(checkSecret)
 
     # worker
     dataRes = userReportObj.getReport(agentUser,memberUser,dateStart,dateEnd)

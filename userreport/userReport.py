@@ -80,14 +80,14 @@ class userReport():
 
     def checkSecretKey(self,secretKey):
         if self.secretKey != secretKey:
-            return False
-        return True
+            return {'success':False,'message':'secret key error','data':{}}
+        return {'success':True,'message':'secret key correct','data':{}}
 
     def getReport(self,agentUser,memberUser,dateStart,dateEnd):
 
         dataRes = defaultdict(dict)
         dataRes = {'success':True,'message':'fetch data success','data':{},'start_date':str(dateStart+'T17:00:00.000Z'),'end_date':str(dateEnd+'T16:59:59.999Z')}
-
+        
         # check if not found token files or request API with current token (403 prem denied)
         if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile',agentUser)) or self.getCustomerListsByAPI(agentUser,dateStart,dateEnd)['success'] == False:
             self.renewTokenWithChromeDriver(agentUser)
@@ -98,22 +98,23 @@ class userReport():
             dataRes['success'] = getCus['success']
             dataRes['message'] = getCus['message']
             return dataRes
-
+        
         # check if user are not under the agent
         checkUser = self.checkUserUnderAgentByAPI(agentUser,dateStart,dateEnd,memberUser)
         if checkUser['success'] == False:
             dataRes['success'] = checkUser['success']
             dataRes['message'] = checkUser['message']
             return dataRes
-
+        
         # get all user transaction
         userTransactions = self.getAllUserTransactionsByAPI(agentUser,memberUser,dateStart,dateEnd)
-        if userTransactions['success'] == False:
+        if 'success' in userTransactions and userTransactions['success'] == False:
             dataRes['success'] = userTransactions['success']
             dataRes['message'] = userTransactions['message']
             return dataRes
-
+        
         dataRes['data'] = userTransactions
+        
         return dataRes
 
     def getAllUserTransactionsByAPI(self,agentUser,memberUser,dateStart,dateEnd):
@@ -125,28 +126,30 @@ class userReport():
             return {'success':False,'message':'not found data transaction for user %s (%s)'%(memberUser,self.memberUserID)}
         elif 'success' in response and response['success'] == False:
             return {'success':response['success'],'message':'cannot get data for user: %s (%s) agent: %s'%(memberUser,self.memberUserID,agentUser)}
-
-
-        userTransactions['cus_id'] = response['data']['id']
+        
+        userTransactions['cus_member'] = response['data']['id']
+        userTransactions['cus_id'] = self.memberUserID
         userTransactions['cus_type'] = response['data']['type']
         userTransactions['cus_currency'] = response['data']['currency']
+        userTransactions['cus_agent'] = agentUser
         userTransactions['total']['grand_total'] = response['data']['grandTotal']['realBets']
         userTransactions['total']['cus_winlose'] = response['data']['grandTotal']['total']['member']
         userTransactions['total']['agent_winlose'] = response['data']['grandTotal']['total']['toOperator']
         userTransactions['total']['company_winlose'] = response['data']['grandTotal']['total']['toReseller']
+        userTransactions['total_transactions'] = response['data']['grandCount']
         userTransactions['list_transactions'] = response['data']['list']
-
+        
         pageRegCount = math.ceil(response['data']['grandCount'] / self.transactionsRowsPerPage)
         if pageRegCount <= 1:
             return userTransactions
-
+        
         for pageCount in range(2, pageRegCount+1):
             response = self.apiRequest(agentUser, self.betDetails, self.memberUserID, dateStart, dateEnd, str(pageCount), str(self.transactionsRowsPerPage),'getAllUserTransactionsByAPI')
             if 'success' in response and response['success'] == True and 'data' in response and  len(response['data']) != 0 :
                 userTransactions['list_transactions'].extend(response['data']['list'])
             else:
                 print('error fetch data for user %s (%s)'%(memberUser,self.memberUserID))
-
+            
         return userTransactions
 
     def checkUserUnderAgentByAPI(self,agentUser,dateStart,dateEnd,memberUser):
