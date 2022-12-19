@@ -21,6 +21,10 @@ agent_login = {
         'user_name':'bell2seamless@bot2',
         'password':'lbftfd321b98'
     },
+    'vipbell1@bot': {
+        'user_name':'vipbell1@bot',
+        'password':'lbftfd321b98'
+    },
 }
 
 database = {

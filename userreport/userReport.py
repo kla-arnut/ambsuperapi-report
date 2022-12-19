@@ -68,6 +68,8 @@ class userReport():
         self.transactionsRowsPerPage = 500
 
     def getAllToken(self):
+        print("FN->",userReport.getAllToken.__name__)
+
         allToken = defaultdict(dict)
         files = os.listdir(os.path.join(os.getcwd(), r'tokenfile'))
         files = [f for f in files if os.path.isfile(os.path.join(os.getcwd(), r'tokenfile',f))]
@@ -79,20 +81,23 @@ class userReport():
         return allToken
 
     def checkSecretKey(self,secretKey):
+        print("FN->",userReport.checkSecretKey.__name__)
+
         if self.secretKey != secretKey:
             return {'success':False,'message':'secret key error','data':{}}
         return {'success':True,'message':'secret key correct','data':{}}
 
     def getReport(self,agentUser,memberUser,dateStart,dateEnd):
+        print("FN->",userReport.getReport.__name__)
 
         dataRes = defaultdict(dict)
         dataRes = {'success':True,'message':'fetch data success','data':{},'start_date':str(dateStart+'T17:00:00.000Z'),'end_date':str(dateEnd+'T16:59:59.999Z')}
         
-        # check if not found token files or request API with current token (403 prem denied)
-        if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile',agentUser)) or self.getCustomerListsByAPI(agentUser,dateStart,dateEnd)['success'] == False:
+        # check if not found token files 
+        if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile',agentUser)):
             self.renewTokenWithChromeDriver(agentUser)
 
-        # test by get customer list again after renew token
+        # test by get customer list by current token or request API with current token (403 prem denied)
         getCus = self.getCustomerListsByAPI(agentUser,dateStart,dateEnd)
         if getCus['success'] == False:
             dataRes['success'] = getCus['success']
@@ -118,15 +123,16 @@ class userReport():
         return dataRes
 
     def getAllUserTransactionsByAPI(self,agentUser,memberUser,dateStart,dateEnd):
+        print("FN->",userReport.getAllUserTransactionsByAPI.__name__)
 
-        userTransactions = defaultdict(dict)
-
+        print('user transection request page 1')
         response = self.apiRequest(agentUser, self.betDetails, self.memberUserID, dateStart, dateEnd, '1', str(self.transactionsRowsPerPage),'getAllUserTransactionsByAPI')
         if 'success' in response and  'data' in response and  len(response['data']) == 0: #empty data
             return {'success':False,'message':'not found data transaction for user %s (%s)'%(memberUser,self.memberUserID)}
         elif 'success' in response and response['success'] == False:
             return {'success':response['success'],'message':'cannot get data for user: %s (%s) agent: %s'%(memberUser,self.memberUserID,agentUser)}
         
+        userTransactions = defaultdict(dict)
         userTransactions['cus_member'] = response['data']['id']
         userTransactions['cus_id'] = self.memberUserID
         userTransactions['cus_type'] = response['data']['type']
@@ -141,9 +147,12 @@ class userReport():
         
         pageRegCount = math.ceil(response['data']['grandCount'] / self.transactionsRowsPerPage)
         if pageRegCount <= 1:
+            print('user transection page count',pageRegCount)
             return userTransactions
         
+        print('user transection page count',int(pageRegCount+1))
         for pageCount in range(2, pageRegCount+1):
+            print('user transection request page',pageCount)
             response = self.apiRequest(agentUser, self.betDetails, self.memberUserID, dateStart, dateEnd, str(pageCount), str(self.transactionsRowsPerPage),'getAllUserTransactionsByAPI')
             if 'success' in response and response['success'] == True and 'data' in response and  len(response['data']) != 0 :
                 userTransactions['list_transactions'].extend(response['data']['list'])
@@ -153,6 +162,7 @@ class userReport():
         return userTransactions
 
     def checkUserUnderAgentByAPI(self,agentUser,dateStart,dateEnd,memberUser):
+        print("FN->",userReport.checkUserUnderAgentByAPI.__name__)
 
         response = self.apiRequest(agentUser, self.winloseAPI, memberUser, dateStart, dateEnd, '1', '100','checkUserUnderAgentByAPI')
         if 'success' in response and response['success']  == True:
@@ -161,9 +171,11 @@ class userReport():
         elif response['success']  == False and 'error' in response:
             response['message'] = '%s (user %s not found OR not under the agent %s OR user has no transactions on selected dat)'%(response['error']['message'],memberUser,agentUser)
 
+        print('%s is under to %s'%(agentUser,memberUser))
         return response
 
     def apiRequest(self, agentUser, urlReg, memberUser, dateStart, dateEnd, page, pageSize, functionCall):
+        print("FN->",userReport.apiRequest.__name__)
 
         tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',agentUser)))
 
@@ -202,16 +214,28 @@ class userReport():
             return {'success':False,'message':'Forbidden resource (403)','statusCode':403,'error':'Forbidden(403)'}
 
         if response.status_code != 200:
+            print('response is not return 200OK',response.status_code)
             return {'success':False, 'message':'response status code error %s errorcode:%s'%(urlReg,response.status_code)}
 
         return responseJSON
 
     def getCustomerListsByAPI(self,agentUser,dateStart,dateEnd):
+        print("FN->",userReport.getCustomerListsByAPI.__name__)
 
         response = self.apiRequest(agentUser, self.winloseAPI, None, dateStart, dateEnd, '1', '100','getCustomerListsByAPI')
-        return(response)
+        if 'success' in response and response['success'] == True:
+            print('current api worked True')
+            return response
+        
+        response['success'] = False
+        response['message'] = 'can not get user data from api'
+        print('current api worked False')
+        return response
 
     def renewTokenWithChromeDriver(self,agentUser):
+        print("FN->",userReport.renewTokenWithChromeDriver.__name__)
+        
+        print('create/renew token file by chrome webdriver')
         options = webdriver.ChromeOptions()
         for arg in self.chromeArgs:
             options.add_argument(arg)
@@ -262,10 +286,13 @@ class userReport():
             if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile')): os.makedirs(os.path.join(os.getcwd(), r'tokenfile'))
             with open(os.path.join(os.getcwd(), r'tokenfile',agentUser), "w") as outfile:
                 json.dump(token, outfile)
+                print('create token file',outfile)
 
         return True
 
     def ProcessBrowserLogsForNetworkEvents(self,logs):
+        print("FN->",userReport.ProcessBrowserLogsForNetworkEvents.__name__)
+
         """
         Return only logs which have a method that start with "Network.response", "Network.request", or "Network.webSocket"
         since we're interested in the network events specifically.
