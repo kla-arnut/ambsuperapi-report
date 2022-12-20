@@ -59,12 +59,12 @@ curl 'https://api.ambsuperapi.com/report/betDetail?id=00holbfas74c2b4&currency=T
 --compressed
 
 
-curl 'https://api.ambsuperapi.com/report/betDetail?id=00holbfsaavn4qae&currency=THB&product=&category=&startDate=2022-12-10T17:00:00.000Z&endDate=2022-12-11T16:59:59.999Z&page=1&pageSize=100&timezone=7' \
+curl 'https://api.ambsuperapi.com/report/winLose?id=vipbell1&currency=THB&username=lbfas05e74c&startDate=2022-12-06T17:00:00.000Z&endDate=2022-12-07T16:59:59.999Z&product=&category=&reportBy=account&page=1&pageSize=100&timezone=7' \
 -H 'authority: api.ambsuperapi.com' \
 -H 'accept: */*' \
 -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
--H 'auth-name: bell2seamless@bot2' \
--H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbGwyc2VhbWxlc3NAYm90MiIsInJvbGVzIjpbIlN1YkFjY291bnQiXSwic3ViQWNjb3VudE1lbnVzIjpbeyJuYW1lIjoiTUVOVV9BR0VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX0FDQ09VTlQiLCJwZXJtaXNzaW9uIjoiaGlkZGVuIn0seyJuYW1lIjoiTUVOVV9SRVBPUlQiLCJwZXJtaXNzaW9uIjoicmVhZG9ubHkifSx7Im5hbWUiOiJNRU5VX0NSRURJVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifV0sImlhdCI6MTY3MDgzNjIxN30.-rsCQ1LPZU0_HCYIczuIWLZ9GL0x8gYgev4p7lRZuW8' \
+-H 'auth-name: vipbell1@bot' \
+-H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpcGJlbGwxQGJvdCIsInJvbGVzIjpbIlN1YkFjY291bnQiXSwic3ViQWNjb3VudE1lbnVzIjpbeyJuYW1lIjoiTUVOVV9BR0VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX0FDQ09VTlQiLCJwZXJtaXNzaW9uIjoiaGlkZGVuIn0seyJuYW1lIjoiTUVOVV9SRVBPUlQiLCJwZXJtaXNzaW9uIjoicmVhZG9ubHkifSx7Im5hbWUiOiJNRU5VX0NSRURJVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifV0sImlhdCI6MTY3MTUxNTU4MX0.nv9qHw04jQ_vBkWfsnKKvzTiY_vtKkynmE3KYVnUUs0' \
 -H 'cache-control: no-cache' \
 -H 'origin: https://ambsuperapi.com' \
 -H 'pragma: no-cache' \

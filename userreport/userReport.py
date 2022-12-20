@@ -71,13 +71,14 @@ class userReport():
         print("FN->",userReport.getAllToken.__name__)
 
         allToken = defaultdict(dict)
-        files = os.listdir(os.path.join(os.getcwd(), r'tokenfile'))
-        files = [f for f in files if os.path.isfile(os.path.join(os.getcwd(), r'tokenfile',f))]
-        idx = 1
-        for file in files:
-            tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',file)))
-            allToken[idx].update({'filename':os.path.join(os.getcwd(), r'tokenfile',file), 'auth_token':tokenFile['auth_token'], 'auth_name':tokenFile['auth_name'], 'id_name':tokenFile['id_name']})
-            idx =  idx+1
+        if os.path.exists(os.path.join(os.getcwd(), r'tokenfile')):
+            files = os.listdir(os.path.join(os.getcwd(), r'tokenfile'))
+            files = [f for f in files if os.path.isfile(os.path.join(os.getcwd(), r'tokenfile',f))]
+            idx = 1
+            for file in files:
+                tokenFile = json.load(open(os.path.join(os.getcwd(), r'tokenfile',file)))
+                allToken[idx].update({'filename':os.path.join(os.getcwd(), r'tokenfile',file), 'auth_token':tokenFile['auth_token'], 'auth_name':tokenFile['auth_name'], 'id_name':tokenFile['id_name']})
+                idx =  idx+1
         return allToken
 
     def checkSecretKey(self,secretKey):
@@ -92,8 +93,8 @@ class userReport():
 
         dataRes = defaultdict(dict)
         dataRes = {'success':True,'message':'fetch data success','data':{},'start_date':str(dateStart+'T17:00:00.000Z'),'end_date':str(dateEnd+'T16:59:59.999Z')}
-        
-        # check if not found token files 
+
+        # check if not found token files
         if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile',agentUser)):
             self.renewTokenWithChromeDriver(agentUser)
 
@@ -103,23 +104,23 @@ class userReport():
             dataRes['success'] = getCus['success']
             dataRes['message'] = getCus['message']
             return dataRes
-        
+
         # check if user are not under the agent
         checkUser = self.checkUserUnderAgentByAPI(agentUser,dateStart,dateEnd,memberUser)
         if checkUser['success'] == False:
             dataRes['success'] = checkUser['success']
             dataRes['message'] = checkUser['message']
             return dataRes
-        
+
         # get all user transaction
         userTransactions = self.getAllUserTransactionsByAPI(agentUser,memberUser,dateStart,dateEnd)
         if 'success' in userTransactions and userTransactions['success'] == False:
             dataRes['success'] = userTransactions['success']
             dataRes['message'] = userTransactions['message']
             return dataRes
-        
+
         dataRes['data'] = userTransactions
-        
+
         return dataRes
 
     def getAllUserTransactionsByAPI(self,agentUser,memberUser,dateStart,dateEnd):
@@ -131,7 +132,7 @@ class userReport():
             return {'success':False,'message':'not found data transaction for user %s (%s)'%(memberUser,self.memberUserID)}
         elif 'success' in response and response['success'] == False:
             return {'success':response['success'],'message':'cannot get data for user: %s (%s) agent: %s'%(memberUser,self.memberUserID,agentUser)}
-        
+
         userTransactions = defaultdict(dict)
         userTransactions['cus_member'] = response['data']['id']
         userTransactions['cus_id'] = self.memberUserID
@@ -144,12 +145,12 @@ class userReport():
         userTransactions['total']['company_winlose'] = response['data']['grandTotal']['total']['toReseller']
         userTransactions['total_transactions'] = response['data']['grandCount']
         userTransactions['list_transactions'] = response['data']['list']
-        
+
         pageRegCount = math.ceil(response['data']['grandCount'] / self.transactionsRowsPerPage)
         if pageRegCount <= 1:
             print('user transection page count',pageRegCount)
             return userTransactions
-        
+
         print('user transection page count',int(pageRegCount+1))
         for pageCount in range(2, pageRegCount+1):
             print('user transection request page',pageCount)
@@ -158,20 +159,20 @@ class userReport():
                 userTransactions['list_transactions'].extend(response['data']['list'])
             else:
                 print('error fetch data for user %s (%s)'%(memberUser,self.memberUserID))
-            
+
         return userTransactions
 
     def checkUserUnderAgentByAPI(self,agentUser,dateStart,dateEnd,memberUser):
         print("FN->",userReport.checkUserUnderAgentByAPI.__name__)
 
-        response = self.apiRequest(agentUser, self.winloseAPI, memberUser, dateStart, dateEnd, '1', '100','checkUserUnderAgentByAPI')
+        response = self.apiRequest(agentUser, self.winloseAPI, memberUser, dateStart, dateEnd, '1', '20','checkUserUnderAgentByAPI')
         if 'success' in response and response['success']  == True:
             self.memberUserID = response['data']['username']
             response['message'] = '%s is under %s'%(memberUser, agentUser)
         elif response['success']  == False and 'error' in response:
             response['message'] = '%s (user %s not found OR not under the agent %s OR user has no transactions on selected dat)'%(response['error']['message'],memberUser,agentUser)
 
-        print('%s is under to %s'%(agentUser,memberUser))
+        print(response['message'])
         return response
 
     def apiRequest(self, agentUser, urlReg, memberUser, dateStart, dateEnd, page, pageSize, functionCall):
@@ -223,10 +224,11 @@ class userReport():
         print("FN->",userReport.getCustomerListsByAPI.__name__)
 
         response = self.apiRequest(agentUser, self.winloseAPI, None, dateStart, dateEnd, '1', '100','getCustomerListsByAPI')
+
         if 'success' in response and response['success'] == True:
             print('current api worked True')
             return response
-        
+
         response['success'] = False
         response['message'] = 'can not get user data from api'
         print('current api worked False')
@@ -234,7 +236,7 @@ class userReport():
 
     def renewTokenWithChromeDriver(self,agentUser):
         print("FN->",userReport.renewTokenWithChromeDriver.__name__)
-        
+
         print('create/renew token file by chrome webdriver')
         options = webdriver.ChromeOptions()
         for arg in self.chromeArgs:
