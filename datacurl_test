@@ -1,70 +1,12 @@
-curl 'https://api.ambsuperapi.com/report/winLose?id=bell1&currency=&username=&startDate=2022-12-06T17:00:00.000Z&endDate=2022-12-07T16:59:59.999Z&product=&category=&reportBy=account&page=1&pageSize=100&timezone=7' \
--H 'authority: api.ambsuperapi.com' \
--H 'accept: */*' \
--H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
--H 'auth-name: bell1' \
--H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbGwxIiwicm9sZXMiOlsiT3BlcmF0b3IiXSwic3ViQWNjb3VudE1lbnVzIjpbXSwiaWF0IjoxNjcwNDAzOTk2fQ.h-lfI-zq3v2_CWMK5wHQfOWndfS0cQd3Q521b8gfjAo' \
--H 'cache-control: no-cache' \
--H 'origin: https://ambsuperapi.com' \
--H 'pragma: no-cache' \
--H 'referer: https://ambsuperapi.com/' \
--H 'sec-ch-ua: "Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"' \
--H 'sec-ch-ua-mobile: ?0' \
--H 'sec-ch-ua-platform: "macOS"' \
--H 'sec-fetch-dest: empty' \
--H 'sec-fetch-mode: cors' \
--H 'sec-fetch-site: same-site' \
--H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36' \
---compressed
 
 
-curl 'https://api.ambsuperapi.com/report/winLose?id=bell2seamless&currency=THB&username=lbfaseee029&startDate=2022-12-06T17:00:00.000Z&endDate=2022-12-07T16:59:59.999Z&product=&category=&reportBy=account&page=1&pageSize=500&timezone=7' \
--H 'authority: api.ambsuperapi.com' \
--H 'accept: */*' \
--H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
--H 'auth-name: bell2seamless@bot' \
--H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbGwyc2VhbWxlc3NAYm90Iiwicm9sZXMiOlsiU3ViQWNjb3VudCJdLCJzdWJBY2NvdW50TWVudXMiOlt7Im5hbWUiOiJNRU5VX0FHRU5UIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9LHsibmFtZSI6Ik1FTlVfQUNDT1VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX1JFUE9SVCIsInBlcm1pc3Npb24iOiJyZWFkb25seSJ9LHsibmFtZSI6Ik1FTlVfQ1JFRElUIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9XSwiaWF0IjoxNjcwNTc0ODMwfQ.UL9MqkMCwiJ34daUZn6KQVobyvVHIwe2y3nfJphraZs' \
--H 'cache-control: no-cache' \
--H 'origin: https://ambsuperapi.com' \
--H 'pragma: no-cache' \
--H 'referer: https://ambsuperapi.com/' \
--H 'sec-ch-ua: "Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"' \
--H 'sec-ch-ua-mobile: ?0' \
--H 'sec-ch-ua-platform: "macOS"' \
--H 'sec-fetch-dest: empty' \
--H 'sec-fetch-mode: cors' \
--H 'sec-fetch-site: same-site' \
--H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36' \
---compressed
-
-
-
-curl 'https://api.ambsuperapi.com/report/betDetail?id=00holbfas74c2b4&currency=THB&product=&category=&startDate=2022-12-09T17:00:00.000Z&endDate=2022-12-10T16:59:59.999Z&page=1&pageSize=500&timezone=7' \
--H 'authority: api.ambsuperapi.com' \
--H 'accept: */*' \
--H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
--H 'auth-name: bell2seamless@bot' \
--H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbGwyc2VhbWxlc3NAYm90Iiwicm9sZXMiOlsiU3ViQWNjb3VudCJdLCJzdWJBY2NvdW50TWVudXMiOlt7Im5hbWUiOiJNRU5VX0FHRU5UIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9LHsibmFtZSI6Ik1FTlVfQUNDT1VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX1JFUE9SVCIsInBlcm1pc3Npb24iOiJyZWFkb25seSJ9LHsibmFtZSI6Ik1FTlVfQ1JFRElUIiwicGVybWlzc2lvbiI6ImhpZGRlbiJ9XSwiaWF0IjoxNjcwNjk3NDcxfQ.RUbQF8BQ_-HcQyeg1EFs31suHs6Ceitk4NHnvHqpbDk' \
--H 'cache-control: no-cache' \
--H 'origin: https://ambsuperapi.com' \
--H 'pragma: no-cache' \
--H 'referer: https://ambsuperapi.com/' \
--H 'sec-ch-ua: "Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"' \
--H 'sec-ch-ua-mobile: ?0' \
--H 'sec-ch-ua-platform: "macOS"' \
--H 'sec-fetch-dest: empty' \
--H 'sec-fetch-mode: cors' \
--H 'sec-fetch-site: same-site' \
--H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36' \
---compressed
-
-
-curl 'https://api.ambsuperapi.com/report/winLose?id=vipbell1&currency=THB&username=lbfas05e74c&startDate=2022-12-06T17:00:00.000Z&endDate=2022-12-07T16:59:59.999Z&product=&category=&reportBy=account&page=1&pageSize=100&timezone=7' \
+# get win/lose sample
+curl 'https://api.ambsuperapi.com/report/winLose?id=vipbell1&currency=THB&username=&startDate=2022-12-24T17:00:00.000Z&endDate=2022-12-25T16:59:59.999Z&product=&category=&reportBy=account&page=1&pageSize=500&timezone=7' \
 -H 'authority: api.ambsuperapi.com' \
 -H 'accept: */*' \
 -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
 -H 'auth-name: vipbell1@bot' \
--H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpcGJlbGwxQGJvdCIsInJvbGVzIjpbIlN1YkFjY291bnQiXSwic3ViQWNjb3VudE1lbnVzIjpbeyJuYW1lIjoiTUVOVV9BR0VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX0FDQ09VTlQiLCJwZXJtaXNzaW9uIjoiaGlkZGVuIn0seyJuYW1lIjoiTUVOVV9SRVBPUlQiLCJwZXJtaXNzaW9uIjoicmVhZG9ubHkifSx7Im5hbWUiOiJNRU5VX0NSRURJVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifV0sImlhdCI6MTY3MTUxNTU4MX0.nv9qHw04jQ_vBkWfsnKKvzTiY_vtKkynmE3KYVnUUs0' \
+-H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpcGJlbGwxQGJvdCIsInJvbGVzIjpbIlN1YkFjY291bnQiXSwic3ViQWNjb3VudE1lbnVzIjpbeyJuYW1lIjoiTUVOVV9BR0VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX0FDQ09VTlQiLCJwZXJtaXNzaW9uIjoiaGlkZGVuIn0seyJuYW1lIjoiTUVOVV9SRVBPUlQiLCJwZXJtaXNzaW9uIjoicmVhZG9ubHkifSx7Im5hbWUiOiJNRU5VX0NSRURJVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifV0sImlhdCI6MTY3MjA1MzM1OX0.zGYE-BS0a0YdBEn03awoOebI-T8m3GJ79_y1Lxe0Eys' \
 -H 'cache-control: no-cache' \
 -H 'origin: https://ambsuperapi.com' \
 -H 'pragma: no-cache' \
@@ -77,6 +19,51 @@ curl 'https://api.ambsuperapi.com/report/winLose?id=vipbell1&currency=THB&userna
 -H 'sec-fetch-site: same-site' \
 -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36' \
 --compressed
+
+
+# get real user id
+curl 'https://api.ambsuperapi.com/report/winLose?id=vipbell1&currency=THB&username=lbfasf12c66&startDate=2022-12-24T17:00:00.000Z&endDate=2022-12-25T16:59:59.999Z&product=&category=&reportBy=account&page=1&pageSize=100&timezone=7' \
+-H 'authority: api.ambsuperapi.com' \
+-H 'accept: */*' \
+-H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
+-H 'auth-name: vipbell1@bot' \
+-H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpcGJlbGwxQGJvdCIsInJvbGVzIjpbIlN1YkFjY291bnQiXSwic3ViQWNjb3VudE1lbnVzIjpbeyJuYW1lIjoiTUVOVV9BR0VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX0FDQ09VTlQiLCJwZXJtaXNzaW9uIjoiaGlkZGVuIn0seyJuYW1lIjoiTUVOVV9SRVBPUlQiLCJwZXJtaXNzaW9uIjoicmVhZG9ubHkifSx7Im5hbWUiOiJNRU5VX0NSRURJVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifV0sImlhdCI6MTY3MjA1MzM1OX0.zGYE-BS0a0YdBEn03awoOebI-T8m3GJ79_y1Lxe0Eys' \
+-H 'cache-control: no-cache' \
+-H 'origin: https://ambsuperapi.com' \
+-H 'pragma: no-cache' \
+-H 'referer: https://ambsuperapi.com/' \
+-H 'sec-ch-ua: "Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"' \
+-H 'sec-ch-ua-mobile: ?0' \
+-H 'sec-ch-ua-platform: "macOS"' \
+-H 'sec-fetch-dest: empty' \
+-H 'sec-fetch-mode: cors' \
+-H 'sec-fetch-site: same-site' \
+-H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36' \
+--compressed
+
+
+# get bet detail with user id
+curl 'https://api.ambsuperapi.com/report/betDetail?id=00holbfasf12c66&currency=THB&product=&category=&startDate=2022-12-24T17:00:00.000Z&endDate=2022-12-25T16:59:59.999Z&page=1&pageSize=500&timezone=7' \
+-H 'authority: api.ambsuperapi.com' \
+-H 'accept: */*' \
+-H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8,th;q=0.7' \
+-H 'auth-name: vipbell1@bot' \
+-H 'auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpcGJlbGwxQGJvdCIsInJvbGVzIjpbIlN1YkFjY291bnQiXSwic3ViQWNjb3VudE1lbnVzIjpbeyJuYW1lIjoiTUVOVV9BR0VOVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifSx7Im5hbWUiOiJNRU5VX0FDQ09VTlQiLCJwZXJtaXNzaW9uIjoiaGlkZGVuIn0seyJuYW1lIjoiTUVOVV9SRVBPUlQiLCJwZXJtaXNzaW9uIjoicmVhZG9ubHkifSx7Im5hbWUiOiJNRU5VX0NSRURJVCIsInBlcm1pc3Npb24iOiJoaWRkZW4ifV0sImlhdCI6MTY3MjA1MzM1OX0.zGYE-BS0a0YdBEn03awoOebI-T8m3GJ79_y1Lxe0Eys' \
+-H 'cache-control: no-cache' \
+-H 'origin: https://ambsuperapi.com' \
+-H 'pragma: no-cache' \
+-H 'referer: https://ambsuperapi.com/' \
+-H 'sec-ch-ua: "Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"' \
+-H 'sec-ch-ua-mobile: ?0' \
+-H 'sec-ch-ua-platform: "macOS"' \
+-H 'sec-fetch-dest: empty' \
+-H 'sec-fetch-mode: cors' \
+-H 'sec-fetch-site: same-site' \
+-H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36' \
+--compressed
+
+
+
 
 
 

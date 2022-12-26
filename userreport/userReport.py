@@ -100,10 +100,14 @@ class userReport():
 
         # test by get customer list by current token or request API with current token (403 prem denied)
         getCus = self.getCustomerListsByAPI(agentUser,dateStart,dateEnd)
-        if getCus['success'] == False:
-            dataRes['success'] = getCus['success']
-            dataRes['message'] = getCus['message']
-            return dataRes
+        # check if 403 (forbidden token expire)
+        if getCus['success'] == False and 'statusCode' in getCus and getCus['statusCode'] == 403:
+            self.renewTokenWithChromeDriver(agentUser)
+            getCus = self.getCustomerListsByAPI(agentUser,dateStart,dateEnd)
+            if getCus['success'] == False:
+                dataRes['success'] = getCus['success']
+                dataRes['message'] = getCus['message']
+                return dataRes
 
         # check if user are not under the agent
         checkUser = self.checkUserUnderAgentByAPI(agentUser,dateStart,dateEnd,memberUser)
@@ -229,9 +233,7 @@ class userReport():
             print('current api worked True')
             return response
 
-        response['success'] = False
-        response['message'] = 'can not get user data from api'
-        print('current api worked False')
+        print('can not get customer lists by API')
         return response
 
     def renewTokenWithChromeDriver(self,agentUser):
