@@ -1,5 +1,5 @@
 # head agent
-#     user vipbell1@bot 
+#     user vipbell1@bot
 #     pass lbftfd321b98
 
 # agent
@@ -16,7 +16,7 @@ winlose_api = 'https://api.ambsuperapi.com/report/winLose'
 
 bet_details = 'https://api.ambsuperapi.com/report/betDetail'
 
-agent_login = {
+head_login = {
     'bell2seamless@bot2': {
         'user_name':'bell2seamless@bot2',
         'password':'lbftfd321b98'

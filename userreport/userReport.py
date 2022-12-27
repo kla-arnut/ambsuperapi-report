@@ -35,7 +35,7 @@ class userReport():
         self.secretKey = getattr(configs, 'secret_key', '')
         self.loginPage = getattr(configs, 'login_page', '')
         self.winlosePage = getattr(configs, 'winlose_page', '')
-        self.agentLogin = getattr(configs, 'agent_login', [])
+        self.headLogin = getattr(configs, 'head_login', [])
         self.winloseAPI = getattr(configs, 'winlose_api', '')
         self.betDetails = getattr(configs, 'bet_details', '')
 
@@ -255,7 +255,7 @@ class userReport():
             userName.send_keys(agentUser)
             # wait and input password
             password = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, 'inputPassword')))
-            password.send_keys(self.agentLogin[agentUser]['password'])
+            password.send_keys(self.headLogin[agentUser]['password'])
             # click sign in
             submit = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, 'login')))
             submit.click()
