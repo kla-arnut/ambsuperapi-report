@@ -110,7 +110,7 @@ class userReport():
                 return dataRes
 
         # check if user are not under the agent
-        checkUser = self.checkUserUnderAgentByAPI(agentUser,dateStart,dateEnd,memberUser)
+        checkUser = self.getRealUserID(agentUser,dateStart,dateEnd,memberUser)
         if checkUser['success'] == False:
             dataRes['success'] = checkUser['success']
             dataRes['message'] = checkUser['message']
@@ -126,6 +126,117 @@ class userReport():
         dataRes['data'] = userTransactions
 
         return dataRes
+    
+    def getRealUserID(self,agentUser,dateStart,dateEnd,memberUser):
+        print("FN->",userReport.getRealUserID.__name__)
+
+        # if user id is exists
+        if os.path.exists(os.path.join(os.getcwd(), r'allUserData.json')):
+            allUserData = json.load(open(os.path.join(os.getcwd(), r'allUserData.json')))
+            for agent in allUserData['agents']:
+                for member in agent['members']:
+                    if member['name'] == memberUser:
+                        self.memberUserID = member['id']
+                        print('member:%s id:%s is is exists in current json file agent(%s)->member(%s)'%(memberUser, member['id'],agent['name'],memberUser))
+                        return {'success':True,'message':'success'}
+
+        # if user id is not exists in json file or allUserData.json not exists
+        allUserData = defaultdict(dict)
+        allUserData['resellers'] = []
+        allUserData['agents'] = []
+
+        # get all resellers
+        response = self.apiRequest(agentUser, self.winloseAPI, None, dateStart, dateEnd, '1', '100','getRealUserID')
+        if response['success'] == False:
+            if 'error' in response:
+                response['message'] = str(response['message']) + str(response['error'])
+            return response
+        for resellers in response['data']['list'][0]['rows']:
+            if resellers['type'] == 'Reseller':
+                allUserData['resellers'].append({'myid':resellers['myId'],'id':resellers['id'],'name':resellers['name']})
+            elif resellers['type'] == 'Operator':
+                allUserData['agents'].append({'myid':resellers['myId'],'id':resellers['id'],'name':resellers['name'],'members':[]})
+        pageRegCount = math.ceil(response['data']['list'][0]['grandCount'] / 100)
+        if pageRegCount > 1:
+            print('list resellers page count',int(pageRegCount+1))
+            for pageCount in range(2, pageRegCount+1):
+                print('list resellers request page',pageCount)
+                response = self.apiRequest(agentUser, self.winloseAPI, None, dateStart, dateEnd, str(pageCount), '100','getRealUserID')
+                if 'success' in response and response['success'] == True and 'rows' in response['data']['list'][0] and  len(response['data']['list'][0]['rows']) != 0 :
+                    for resellers in response['data']['list'][0]['rows']:
+                        if resellers['type'] == 'Reseller' :
+                            allUserData['resellers'].append({'myid':resellers['myId'],'id':resellers['id'],'name':resellers['name']})
+                        elif resellers['type'] == 'Operator':
+                            allUserData['agents'].append({'myid':resellers['myId'],'id':resellers['id'],'name':resellers['name'],'members':[]})
+                else:
+                    print('error fetch data resellers %s '%response['message'])
+
+        # get all agents  
+        for reseller in allUserData['resellers']:
+            response = self.apiRequest(agentUser, self.winloseAPI, reseller['id'], dateStart, dateEnd, '1', '100','getRealUserID')
+            if response['success'] == False:
+                if 'error' in response:
+                    response['message'] = str(response['message']) + str(response['error'])
+                with open(os.path.join(os.getcwd(), r'allUserData.json'), "w") as outfile:
+                    json.dump(allUserData, outfile, indent=4)
+                return response
+            for agent in response['data']['list'][0]['rows']:
+                if agent['type'] == 'Operator':
+                    allUserData['agents'].append({'myid':agent['myId'], 'id':agent['id'], 'name':agent['name'],'members':[]})
+            pageRegCount = math.ceil(response['data']['list'][0]['grandCount'] / 100)
+            if pageRegCount > 1:
+                print('list agent page count',int(pageRegCount+1))
+                for pageCount in range(2, pageRegCount+1):
+                    print('list resellers request page',pageCount)
+                    response = self.apiRequest(agentUser, self.winloseAPI, reseller['id'], dateStart, dateEnd, str(pageCount), '100','getRealUserID')
+                    if 'success' in response and response['success'] == True and 'rows' in response['data']['list'][0] and  len(response['data']['list'][0]['rows']) != 0 :
+                        for agent in response['data']['list'][0]['rows']:
+                            if agent['type'] == 'Operator':
+                                allUserData['agents'].append({'myid':agent['myId'], 'id':agent['id'], 'name':agent['name'],'members':[]})
+                    else:
+                        print('error fetch data resellers %s '%response['message'])
+        
+        # get all member
+        agentIdx = 0
+        for agent in allUserData['agents']:
+            response = self.apiRequest(agentUser, self.winloseAPI, agent['id'], dateStart, dateEnd, '1', '500','getRealUserID')
+            if response['success'] == False:
+                if 'error' in response:
+                    response['message'] = str(response['message']) + str(response['error'])
+                with open(os.path.join(os.getcwd(), r'allUserData.json'), "w") as outfile:
+                    json.dump(allUserData, outfile, indent=4)
+                return response
+            for member in response['data']['list'][0]['rows']:
+                if member['type'] == 'Member':
+                    allUserData['agents'][agentIdx]['members'].append({'name':member['name'], 'id':member['id']})
+            pageRegCount = math.ceil(response['data']['list'][0]['grandCount'] / 500)
+            if pageRegCount > 1:
+                print('list agent page count',int(pageRegCount+1))
+                for pageCount in range(2, pageRegCount+1):
+                    print('list resellers request page',pageCount)
+                    response = self.apiRequest(agentUser, self.winloseAPI, agent['id'], dateStart, dateEnd, '1', '500','getRealUserID')
+                    if 'success' in response and response['success'] == True and 'rows' in response['data']['list'][0] and  len(response['data']['list'][0]['rows']) != 0 :
+                        for member in response['data']['list'][0]['rows']:
+                            if member['type'] == 'Member':
+                                allUserData['agents'][agentIdx]['members'].append({'name':member['name'], 'id':member['id']})
+                    else:
+                        print('error fetch data resellers %s '%response['message'])
+            agentIdx = agentIdx +1
+        
+        # save to file
+        with open(os.path.join(os.getcwd(), r'allUserData.json'), "w") as outfile:
+            json.dump(allUserData, outfile, indent=4)
+        
+        # find member id  
+        for agent in allUserData['agents']:
+            for member in agent['members']:
+                if member['name'] == memberUser:
+                    self.memberUserID = member['id']
+                    print('member:%s id:%s is exists with renew by api agent(%s)->member(%s)'%(memberUser, member['id'],agent['name'],memberUser))
+                    return {'success':True,'message':'success'}
+
+        return {'success':False,'message':'can not file user id by username %s'%memberUser}
+
 
     def getAllUserTransactionsByAPI(self,agentUser,memberUser,dateStart,dateEnd):
         print("FN->",userReport.getAllUserTransactionsByAPI.__name__)
@@ -166,19 +277,6 @@ class userReport():
 
         return userTransactions
 
-    def checkUserUnderAgentByAPI(self,agentUser,dateStart,dateEnd,memberUser):
-        print("FN->",userReport.checkUserUnderAgentByAPI.__name__)
-
-        response = self.apiRequest(agentUser, self.winloseAPI, memberUser, dateStart, dateEnd, '1', '20','checkUserUnderAgentByAPI')
-        if 'success' in response and response['success']  == True:
-            self.memberUserID = response['data']['username']
-            response['message'] = '%s is under %s'%(memberUser, agentUser)
-        elif response['success']  == False and 'error' in response:
-            response['message'] = '%s (user %s not found OR not under the agent %s OR user has no transactions on selected dat)'%(response['error']['message'],memberUser,agentUser)
-
-        print(response['message'])
-        return response
-
     def apiRequest(self, agentUser, urlReg, memberUser, dateStart, dateEnd, page, pageSize, functionCall):
         print("FN->",userReport.apiRequest.__name__)
 
@@ -187,10 +285,20 @@ class userReport():
         self.apiRegHeaders['auth-name'] = tokenFile['auth_name']
         self.apiRegHeaders['auth-token'] = tokenFile['auth_token']
 
-        urlParam = '?id=%s'%tokenFile['id_name'] if functionCall != 'getAllUserTransactionsByAPI' else '?id=%s'%memberUser
+        if functionCall == 'getRealUserID' and memberUser != None:
+            urlParam = '?id=%s'%memberUser
+        elif functionCall != 'getAllUserTransactionsByAPI':
+            urlParam = '?id=%s'%tokenFile['id_name']
+        else: 
+            urlParam = '?id=%s'%memberUser
         urlParam = urlParam + '&currency=THB'
         if functionCall != 'getAllUserTransactionsByAPI':
-            urlParam = urlParam + '&username=%s'%memberUser if memberUser != None else urlParam + '&username='
+            if functionCall == 'getRealUserID' and memberUser != None:
+                urlParam = urlParam + '&username='
+            elif memberUser != None:
+                urlParam = urlParam + '&username=%s'%memberUser
+            else: 
+                urlParam = urlParam + '&username='
         urlParam = urlParam + '&product='
         urlParam = urlParam + '&category='
         urlParam = urlParam + '&startDate=%s'%dateStart+'T17:00:00.000Z'
@@ -200,7 +308,7 @@ class userReport():
         urlParam = urlParam + '&page=%s'%page
         urlParam = urlParam + '&pageSize=%s'%pageSize
         urlParam = urlParam + '&timezone=7'
-
+        
         try:
             response = requests.get(urlReg+urlParam,headers=self.apiRegHeaders)
         except requests.exceptions.RequestException as e:
@@ -289,7 +397,7 @@ class userReport():
                             break
             if not os.path.exists(os.path.join(os.getcwd(), r'tokenfile')): os.makedirs(os.path.join(os.getcwd(), r'tokenfile'))
             with open(os.path.join(os.getcwd(), r'tokenfile',agentUser), "w") as outfile:
-                json.dump(token, outfile)
+                json.dump(token, outfile, indent=4)
                 print('create token file',outfile)
 
         return True
